@@ -1,0 +1,2 @@
+rootProject.name='Kazehikaru Finder'
+include ':app'

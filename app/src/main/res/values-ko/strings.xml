@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Kazehikaru Finder</string>
+    <string name="sub_text">자막</string>
+    <string name="no_network_string">서버 접속 실패</string>
+    <string name="good_string">서버 접속 성공!</string>
+    <string name="notice_alert_title">알림</string>
+    <string name="dialog_cancle">취소</string>
+    <string name="dialog_confirm">확인</string>
+    <string name="no_network_dialog">서버에 연결할 수 없습니다.\n인터넷 연결을 확인해주세요.</string>
+    <string name="connection_error">연결 오류</string>
+    <string name="noti_update_anime">애니 업데이트</string>
+    <string name="noti_server">서버 알림</string>
+    <string name="noti_unknown">알 수 없음</string>
+    <string name="noti_setting_anime">애니 업데이트 알림</string>
+    <string name="noti_setting_manage">서버 알림</string>
+    <string name="noti_setting_unknown">알 수 없는 알림</string>
+</resources>

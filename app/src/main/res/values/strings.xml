@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Kazehikaru Finder</string>
+    <string name="sub_text">SUB</string>
+    <string name="no_network_string">Server connection failed</string>
+    <string name="good_string">Successful connection!</string>
+    <string name="connection_error">Connection Error</string>
+    <string name="notice_alert_title">Notice</string>
+    <string name="no_network_dialog">Unable to connect to server.\nPlease check your Internet connection.</string>
+    <string name="dialog_cancle">Cancle</string>
+    <string name="dialog_confirm">Confirm</string>
+    <string name="noti_update_anime">Update Anime</string>
+    <string name="noti_server">Server notification</string>
+    <string name="noti_unknown">Unknown</string>
+    <string name="noti_setting_anime">Anime</string>
+    <string name="noti_setting_manage">Server Manage</string>
+    <string name="noti_setting_unknown">Unknown Notification</string>
+</resources>
