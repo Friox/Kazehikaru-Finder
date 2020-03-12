@@ -14,4 +14,5 @@
     <string name="noti_setting_anime">Anime</string>
     <string name="noti_setting_manage">Server Manage</string>
     <string name="noti_setting_unknown">Unknown Notification</string>
+    <string name="notice_now_downloading">The item is downloading.\nPlease try again later.</string>
 </resources>

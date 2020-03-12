@@ -223,11 +223,15 @@ public class MainActivity extends AppCompatActivity {
                         new getInfo().execute(url);
                         staticInfo.updateURL(url);
                     } else if (type == 2) {
-                        // VIDEO
-                        Intent intent = new Intent(Intent.ACTION_VIEW);
-                        Uri uri = Uri.parse(list.get(position).getUrl());
-                        intent.setDataAndType(uri, "video/*");
-                        startActivity(intent);
+                        if (list.get(position).getFileExtn().equals("part")) {
+                            customAlertDialog = new CustomAlertDialog(MainActivity.this, getString(R.string.notice_alert_title), getString(R.string.notice_now_downloading), getColor(R.color.colorPrimary));
+                            customAlertDialog.show();
+                        } else {
+                            Intent intent = new Intent(Intent.ACTION_VIEW);
+                            Uri uri = Uri.parse(list.get(position).getUrl());
+                            intent.setDataAndType(uri, "video/*");
+                            startActivity(intent);
+                        }
                     } else {
                         // OTHER
                     }
