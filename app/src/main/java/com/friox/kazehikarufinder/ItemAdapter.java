@@ -77,6 +77,7 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
             if (listObject.getSubStatus() == 1) mHolder.subStatus.setTextColor(goodColor);
             else mHolder.subStatus.setTextColor(badColor);
+            if (listObject.getFileExtn().equals("part")) mHolder.icon.setImageResource(R.drawable.ic_file_download_black_24dp);
         }
     }
 
@@ -120,6 +121,7 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         TextView subStatus;
         TextView format;
         TextView episode;
+        ImageView icon;
 
         VideoViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -128,6 +130,7 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             subStatus = itemView.findViewById(R.id.sub_status);
             format = itemView.findViewById(R.id.format_textview);
             episode = itemView.findViewById(R.id.episode_textview);
+            icon = itemView.findViewById(R.id.movie_image);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
