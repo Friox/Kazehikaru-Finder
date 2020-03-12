@@ -1,9 +1,11 @@
 package com.friox.kazehikarufinder;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -43,24 +45,28 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view;
         LayoutInflater inflater = (LayoutInflater)parent.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        if (viewType == VIEWTYPE_PARENT) {
-            view = inflater.inflate(R.layout.listview_item_parent, parent, false);
-            return new ParentViewHolder(view);
-        } else if (viewType == VIEWTYPE_DIR) {
-            view = inflater.inflate(R.layout.listview_item_dir, parent, false);
-            return new DirViewHolder(view);
-        } else {
+        if (viewType == VIEWTYPE_VIDEO) {
             view = inflater.inflate(R.layout.listview_item_video, parent, false);
             return new VideoViewHolder(view);
+        } else {
+            view = inflater.inflate(R.layout.listview_item_single, parent, false);
+            return new SingleViewHolder(view);
         }
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        if (holder instanceof ParentViewHolder) {
-            // ParentViewHolder Binding Action
-        } else if (holder instanceof DirViewHolder) {
-            ((DirViewHolder)holder).title.setText(mList.get(position).getTitle());
+        if (holder instanceof SingleViewHolder) {
+            ListObject listObject = mList.get(position);
+            int viewType = listObject.getViewType();
+            SingleViewHolder mHolder = ((SingleViewHolder)holder);
+            if (viewType == VIEWTYPE_PARENT) {
+                mHolder.title.setTypeface(Typeface.DEFAULT_BOLD);
+            } else {
+                // folder
+                mHolder.title.setText(listObject.getTitle());
+                mHolder.icon.setImageResource(R.drawable.ic_folder_black_24dp);
+            }
         } else {
             ListObject listObject = mList.get(position);
             VideoViewHolder mHolder = (VideoViewHolder)holder;
@@ -84,28 +90,12 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         return mList.get(position).getViewType();
     }
 
-    public class ParentViewHolder extends RecyclerView.ViewHolder {
-        ParentViewHolder(@NonNull View itemView) {
-            super(itemView);
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int pos = getAdapterPosition();
-                    if (pos != RecyclerView.NO_POSITION) {
-                        if (mListener != null) {
-                            mListener.onItemClick(v, pos);
-                        }
-                    }
-                }
-            });
-        }
-    }
+    public class SingleViewHolder extends RecyclerView.ViewHolder {
 
-    public class DirViewHolder extends RecyclerView.ViewHolder {
-
+        ImageView icon;
         TextView title;
 
-        DirViewHolder(@NonNull View itemView) {
+        SingleViewHolder(@NonNull View itemView) {
             super(itemView);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -118,7 +108,8 @@ public class ItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     }
                 }
             });
-            title = itemView.findViewById(R.id.title_textview);
+            icon = itemView.findViewById(R.id.list_icon);
+            title = itemView.findViewById(R.id.list_title);
         }
     }
 
