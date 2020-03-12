@@ -11,9 +11,11 @@ import okhttp3.RequestBody;
 
 public class FirebaseMessagingService extends com.google.firebase.messaging.FirebaseMessagingService {
 
-    StaticInfo staticInfo = new StaticInfo(getApplicationContext());
+    StaticInfo staticInfo;
 
-    public FirebaseMessagingService() {}
+    public FirebaseMessagingService() {
+        staticInfo = new StaticInfo();
+    }
 
     @Override
     public void onNewToken(String token) {

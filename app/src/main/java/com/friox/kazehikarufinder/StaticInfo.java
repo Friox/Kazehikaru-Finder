@@ -10,12 +10,12 @@ public class StaticInfo {
     Context context;
     String versionName;
 
-    String baseUrl = "http://";
-    String mainUrl = "http://";
+    String baseUrl = "";
+    String mainUrl = "";
     String currentUrl = mainUrl + "/";
     String parentUrl;
     String rootName = "";
-    String registerUrl = "http://";
+    String registerUrl = "";
 
     String animeTag = "anime";
     String manageTag = "manage";
@@ -30,6 +30,8 @@ public class StaticInfo {
         this.context = context;
         versionName = getAppVersionName();
     }
+
+    public StaticInfo() {}
 
     public void updateURL(String url) {
         currentUrl = url;
