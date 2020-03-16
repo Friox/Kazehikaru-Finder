@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#607d8b</color>
-    <color name="colorPrimaryDark">#455a64</color>
+    <color name="colorPrimary">#546e7a</color>
+    <color name="colorPrimaryDark">@color/colorPrimary</color>
     <color name="colorAccent">#80cbc4</color>
     <color name="positiveColor">#008577</color>
     <color name="negativeColor">#EF5350</color>
@@ -10,4 +10,5 @@
     <color name="progressBad">#d50000</color>
     <color name="itemIconColor">@color/colorPrimary</color>
     <color name="divColor">#1A000000</color>
+    <color name="colorPrimaryBackup">#607d8b</color>
 </resources>

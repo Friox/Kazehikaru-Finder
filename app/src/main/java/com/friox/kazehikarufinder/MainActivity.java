@@ -6,6 +6,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -13,6 +14,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -37,22 +41,33 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private ArrayList<ListObject> list = null;
     private ItemAdapter adapter;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     CustomAlertDialog customAlertDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimary));
+        getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
         setContentView(R.layout.activity_main);
         recyclerView = findViewById(R.id.recyclerView);
         progressText = findViewById(R.id.progress_text);
         progressLight = findViewById(R.id.progress_status);
         versionText = findViewById(R.id.version_text);
+        swipeRefreshLayout = findViewById(R.id.recyclerView_parent);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new getInfo().execute(staticInfo.currentUrl);
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
+        swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
         versionName = getAppVersionName();
         versionText.setText(versionName);
         staticInfo = new StaticInfo(getApplicationContext());
         createNotificationChannel();
-        getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
         recyclerView.addItemDecoration(new DividerItemDecoration(MainActivity.this, 1));
         new getInfo().execute(staticInfo.mainUrl);
     }
