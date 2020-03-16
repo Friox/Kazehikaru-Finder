@@ -1,5 +1,6 @@
 package com.friox.kazehikarufinder;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -20,6 +21,8 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -258,6 +261,32 @@ public class MainActivity extends AppCompatActivity {
     public void updateActionBarSubTitle(String string) {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setSubtitle(string);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_exit_btn:
+                // Code
+                View.OnClickListener onClickListener = new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        finish();
+                    }
+                };
+                customAlertDialog = new CustomAlertDialog(MainActivity.this, getString(R.string.notice_alert_title), getString(R.string.confirm_exit_dialog), getColor(R.color.colorPrimary), onClickListener, null);
+                customAlertDialog.show();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     @Override

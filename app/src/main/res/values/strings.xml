@@ -15,4 +15,6 @@
     <string name="noti_setting_manage">Server Manage</string>
     <string name="noti_setting_unknown">Unknown Notification</string>
     <string name="notice_now_downloading">The item is downloading.\nPlease try again later.</string>
+    <string name="menu_exit_btn_string">exit</string>
+    <string name="confirm_exit_dialog">Do you really want to quit?</string>
 </resources>
